@@ -1,91 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horizontal Scroll Videos</title>
+<style>
+.sticky-parent{
+  height: 700vh;
+}
+.sticky{
+  position: sticky;
+  top: 0px;
+  max-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.dim{
+  display: block;
+  min-width: 50vw;
+  height: 100vh;
+}
+.horizontal{
+  display: flex;
+}
+.br{
+  outline: solid;
+}
+
+@media (max-width: 620px) {
+  .dim{
+    display: block;
+    min-width: 100vw;
+    height: 100vh;
+  }
+}
+
+p{
+  font-size: 10em;
+  text-align: center;
+}
+</style>
 </head>
 <body>
-    <div class="logos">
-        <div class="logos-slide">
-             <img src="https://tmb001.vercel.app/images/partners/logo-pointsmaker.png" />
-          <img src="https://tmb001.vercel.app/images/partners/logo-buyersforpoints.png" />
-          <img src="https://tmb001.vercel.app/images/partners/logo-dealandrunner.png" />
-          <img src="https://tmb001.vercel.app/images/partners/logo-buyformeretail.png" />
-          <img src="https://tmb001.vercel.app/images/partners/logo-buyinggroup.png" />
-          <img src="https://tmb001.vercel.app/images/partners/logo-embdeals.png" />
-          <img src="https://tmb001.vercel.app/images/partners/logo-buygetrewards.png" />
-          <img src="https://tmb001.vercel.app/images/partners/logo-maxoutdeals.png" />
-          <img src="https://tmb001.vercel.app/images/partners/logo-mysbuyinggroup.png" />
-          <img src="https://tmb001.vercel.app/images/partners/logo-closeoutnj.png" />
+
+  <div style="height: 100vh; width: 100vw;" class="br">
+    <p> Scroll </p>
+  </div> <!--Just extra div for scrolling space-->
+  
+  
+    <div class="sticky-parent">
+      <div class="sticky">
+        <div class="horizontal"> <!--Horizantal conatiner with display flex-->
+  
+          <!--Content Start-->
+          <div class="dim" style="background-color: aqua;"></div>
+          <div class="dim" style="background-color: rgb(255, 238, 0);"></div>
+          <div class="dim" style="background-color: rgb(81, 255, 0);"></div>
+          <div class="dim" style="background-color: rgb(247, 0, 255);"></div>
+          <div class="dim" style="background-color: rgb(27, 24, 179);"></div>
+          <div class="dim" style="background-color:black"></div>
+          <!--Content End-->
+  
         </div>
-        
-        
       </div>
-      <style>
-      *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-body{
-  background:#f2f2f2;
-}
-@keyframes slide{
-  from{
-    transform:translateX(0) ;
+    </div>
+    <div style="height: 100vh; width: 100vw;""></div> <!--Extra Scroll Space-->
+    <script>
+      "use strict"
+
+// Adding scroll event listener
+document.addEventListener('scroll', horizontalScroll);
+
+//Selecting Elements
+let sticky = document.querySelector('.sticky');
+let stickyParent = document.querySelector('.sticky-parent');
+
+let scrollWidth = sticky.scrollWidth;
+let verticalScrollHeight = stickyParent.getBoundingClientRect().height-sticky.getBoundingClientRect().height;
+
+//Scroll function 
+function horizontalScroll(){
+
+    //Checking whether the sticky element has entered into view or not
+    let stickyPosition = sticky.getBoundingClientRect().top;
+    if(stickyPosition > 1){
+        return;
+    }else{
+        let scrolled = stickyParent.getBoundingClientRect().top; //how much is scrolled?
+        sticky.scrollLeft =(scrollWidth/verticalScrollHeight)*(-scrolled)*0.85;
     
-  }
-  to{
-    transform:translateX(-100%) ;
-  
-  }
+    }
 }
-.logos{
-  overflow:hidden;
-  padding:60px 0 ;
-  background:white;
-  white-space:nowrap;
-  position:relative;
-}
-
-.logos:before,
-.logos:after{
-  content:"";
-  position:absolute;
-  top:0;
-  width:250px;
-  height:100%;
-  z-index:2;
-}
-.logos:before{
-  left:0;
-  background:linear-gradient(to left, rgba(255,255,255,0), white);
-}
-.logos:after{
-  right:0;
-  background:linear-gradient(to right, rgba(255,255,255,0), white);
-}
-
-
-.logos:hover .logos-slide{
-  animation-play-state:paused;
-  
-  
-}
-.logos-slide{
-  display:inline-block;
-  animation: 35s slide infinite linear;
-}
-.logos-slide img{
-  height:50px;
-  margin: 0 40px;
-}
-      </style>
-      <script>
-        // Slider version 1
-        const copy = document.querySelector(".logos-slide").cloneNode(true);
-        document.querySelector(".logos").appendChild(copy);
-      </script>
+    </script>
 </body>
 </html>

@@ -231,3 +231,8 @@ resetProgressBar();
 
 // video section
 
+// timer
+// Add JavaScript code here
+ 
+
+// timer end

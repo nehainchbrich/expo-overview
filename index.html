@@ -31,11 +31,11 @@
           <a class="btn ghost" href="#contact">Talk to Us</a>
         </div>
       </div>
-
+      <img src="images/sobha.png">
     </div>
 
     <!-- developers -->
-<div class="logos">
+<!-- <div class="logos">
     <div class="logos-slide">
          <img src="https://tmb001.vercel.app/images/partners/logo-pointsmaker.png" />
       <img src="https://tmb001.vercel.app/images/partners/logo-buyersforpoints.png" />
@@ -48,15 +48,97 @@
       <img src="https://tmb001.vercel.app/images/partners/logo-mysbuyinggroup.png" />
       <img src="https://tmb001.vercel.app/images/partners/logo-closeoutnj.png" />
     </div>
-    
-    
-  </div>
+  </div> -->
 <!-- end developers -->
   </header>
 
   <!-- end banner -->
 
+<!-- timer -->
+<style>
+  .timer-div{margin:0;padding:2rem 0;background:#0f1113;font-family:system-ui,Segoe UI,Roboto,Arial;color:#fff}
+  .time-blocks{display:flex;gap:20px;align-items:center;justify-content:center}
+  .block{position:relative;display:flex;align-items:center;justify-content:center;width:140px;height:140px;border-radius:12px;background:radial-gradient(circle farthest-corner at 140px 140px, #1f3a4d 50%, #273a50 100%);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .timer-div h3{font-size:1.8rem;margin-bottom: 0;}.time-text{font-size:44px;font-weight:800;transform:scaleY(1.5);color:#ffffff;line-height:1}
+  .side-text{position:absolute;bottom:0px;left:0;transform:rotate(270deg);transform-origin:0 0;font-weight:600;font-size:16px;color:#80918e;letter-spacing:.12em}
+  @media (max-width:640px){.block{width:110px;height:110px}.time-text{font-size:34px;transform:scaleY(1.35)}.time-blocks{gap:12px}}
+  /* inline error hint (shows if something breaks) */
 
+</style>
+<div class="timer-div">
+  <h3 class="text-center">The Grand Dubai Property Show is Almost Here</h3>
+  <p class="text-center">Be prepared to discover Dubai’s premium developments, connect with leading real estate experts, and unlock exclusive Dubai investment opportunities.
+
+  </p>
+<div class="time-blocks" role="timer" aria-live="polite">
+  <div class="block"><span class="side-text">DAYS</span><span class="time-text" id="days">0</span></div>
+  <div class="block"><span class="side-text">HOURS</span><span class="time-text" id="hours">00</span></div>
+  <div class="block"><span class="side-text">MINUTES</span><span class="time-text" id="minutes">00</span></div>
+  <div class="block"><span class="side-text">SECONDS</span><span class="time-text" id="seconds">00</span></div>
+</div>
+</div>
+
+
+<script>
+/* Works without any date parsing; counts down a fixed duration */
+(function(){
+
+
+  function ready(fn){
+    if(document.readyState!=='loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn, { once:true });
+  }
+
+  ready(function(){
+    try{
+      // ▶️ CHANGE DURATION HERE (in seconds)
+      // Example: 3 days, 5 hours, 42 minutes, 15 seconds
+      var DURATION_SECONDS = 3*24*60*60 + 5*60*60 + 42*60 + 15;
+
+      var els = {
+        d: document.getElementById('days'),
+        h: document.getElementById('hours'),
+        m: document.getElementById('minutes'),
+        s: document.getElementById('seconds')
+      };
+      // sanity check
+      if (!els.d || !els.h || !els.m || !els.s) {
+        throw new Error('One or more #days/#hours/#minutes/#seconds elements not found.');
+      }
+
+      var endTime = Date.now() + DURATION_SECONDS * 1000;
+
+      function pad2(n){ return n<10 ? '0'+n : ''+n; }
+
+      function tick(){
+        var now = Date.now();
+        var ms = endTime - now;
+        if (ms < 0) ms = 0;
+
+        var totalSec = Math.floor(ms/1000);
+        var days  = Math.floor(totalSec / 86400);
+        var hours = Math.floor((totalSec % 86400) / 3600);
+        var mins  = Math.floor((totalSec % 3600) / 60);
+        var secs  = totalSec % 60;
+
+        els.d.textContent = days;
+        els.h.textContent = pad2(hours);
+        els.m.textContent = pad2(mins);
+        els.s.textContent = pad2(secs);
+
+        if (totalSec === 0) return; // stop at zero
+      }
+
+      // run immediately, then every 1000ms (simple, reliable)
+      tick();
+      setInterval(tick, 1000);
+    }catch(err){
+      showError(err && (err.stack || err.message) || String(err));
+    }
+  });
+})();
+</script>
+<!-- timer end -->
 
 <!-- events -->
 
@@ -112,94 +194,7 @@
                       </div>
                       <div>
                           <div>
-                              <div
-                                  class="WhatWeDo_whatWeDoWrap isScrollView"
-                                  data-scroll="true"
-                                  data-scroll-repeat="true"
-                                  data-scroll-offset="50%, 50%"
-                                  data-scroll-position="top"
-                                  data-scroll-call="0"
-                              >
-                              <div class="d-flex">
-                              <div>
-                                  <h5>01</h5>
-                                  <h3>Upcoming Events</h3>
-                                  <div class="">
-                                      <p class="">
-                                          We combine all the elements and achieve
-                                          successful results for our clients. That’s
-                                          how we create something incredible.
-                                      </p>
-                                  </div>
-                                  </div>
-                                  <div class="WhatWeDo_whatWeDoCotentList">
-                                      <div class="WhatWeDo_boxContent">
-                                          <div class="">
-                                            <section class="events-section" id="events">
-                                                <div class="events-slider-wrapper">
-                                                <div class="events-slider">
-                                                <!-- Cloned last slide for infinite loop -->
-                                                <div class="event-card clone">
-                                                <div class="event-img">
-                                                <img src="images/banner.jpg" alt="Property Event 3">
-                                                </div>
-                                                <div class="event-content">
-                                                <h3>Beach House Experience</h3>
-                                                <p>Discover the charm of waterfront living with our stunning beach houses at the showcase event.</p>
-                                                <a href="#">Register</a>
-                                                </div>
-                                                </div>
-                                                <!-- Original slides -->
-                                                <div class="event-card">
-                                                <div class="event-img">
-                                                <img src="images/banner.jpg" alt="Property Event 1">
-                                                </div>
-                                                <div class="event-content">
-                                                <h3>Luxury Villa Showcase</h3>
-                                                <p>Join us for an exclusive tour of premium villas designed with elegance and modern amenities.</p>
-                                                <a href="#">Book Now</a>
-                                                </div>
-                                                </div>
-                                                <div class="event-card">
-                                                <div class="event-img">
-                                                <img src="images/banner.jpg" alt="Property Event 2">
-                                                </div>
-                                                <div class="event-content">
-                                                <h3>Skyline Apartments Launch</h3>
-                                                <p>Experience the unveiling of our high-rise apartments with breathtaking city views and luxury living.</p>
-                                                <a href="#">Reserve Spot</a>
-                                                </div>
-                                                </div>
-                                                <div class="event-card">
-                                                <div class="event-img">
-                                                <img src="images/banner.jpg" alt="Property Event 3">
-                                                </div>
-                                                <div class="event-content">
-                                                <h3>Beach House Experience</h3>
-                                                <p>Discover the charm of waterfront living with our stunning beach houses at the showcase event.</p>
-                                                <a href="#">Register</a>
-                                                </div>
-                                                </div>
-                                                <!-- Cloned first slide for infinite loop -->
-                                                <div class="event-card clone">
-                                                <div class="event-img">
-                                                <img src="images/banner.jpg" alt="Property Event 1">
-                                                </div>
-                                                <div class="event-content">
-                                                <h3>Luxury Villa Showcase</h3>
-                                                <p>Join us for an exclusive tour of premium villas designed with elegance and modern amenities.</p>
-                                                <a href="#">Book Now</a>
-                                                </div>
-                                                </div>
-                                                </div>
-                                                <div class="event-arrow left">❮</div>
-                                                <div class="event-arrow right">❯</div>
-                                                </section>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  </div>
-                              </div>
+                           
                               <div
                                   class="WhatWeDo_whatWeDoWrap isScrollView"
                                   data-scroll="true"
@@ -420,13 +415,96 @@
       <!-- end -->
         
         <!-- Video -->
-        <section class="video-section" id="video">
+
+
         <h2>Watch Our Video</h2>
-        <div class="video-wrapper">
-        <iframe src="images/Launching Sobha Hartland II (1).mp4" allowfullscreen></iframe>
+        <div class="sticky-parent">
+          <div class="sticky">
+            <div class="horizontal"> <!--Horizantal conatiner with display flex-->
+      
+              <!--Content Start-->
+              <div class="dim">
+                <div class="video-col">
+                  <video muted playsinline>
+                    <source src="images/Launching Sobha Hartland II (1).mp4" type="video/mp4">
+                  </video>
+                  <button class="video-play-pause-btn" aria-label="Play/Pause">▶</button>
+                </div>
+              </div>
+              <div class="dim">
+                <div class="video-col">
+                  <video muted playsinline>
+                    <source src="https://apartmentoffplandubai.com/sobha/videos/SOBHA%20SINIYA%20ISLAND-3.mp4" type="video/mp4">
+                  </video>
+                  <button class="video-play-pause-btn" aria-label="Play/Pause">▶</button>
+                </div>
+              </div>
+              <div class="dim">
+                <div class="video-col">
+                  <video muted playsinline>
+                    <source src="https://apartmentoffplandubai.com/sobha/videos/Downtown%20UAQ%20-%20Sobha%20Realty_2MIN.mp4" type="video/mp4">
+                  </video>
+                  <button class="video-play-pause-btn" aria-label="Play/Pause">▶</button>
+                </div>
+              </div>
+              <div class="dim">
+                <div class="video-col">
+                  <video muted playsinline>
+                    <source src="images/Launching Sobha Hartland II (1).mp4" type="video/mp4">
+                  </video>
+                  <button class="video-play-pause-btn" aria-label="Play/Pause">▶</button>
+                </div>
+              </div>
+              <div class="dim">
+                <div class="video-col">
+                  <video muted playsinline>
+                    <source src="https://apartmentoffplandubai.com/sobha/videos/SOBHA%20SINIYA%20ISLAND-3.mp4" type="video/mp4">
+                  </video>
+                  <button class="video-play-pause-btn" aria-label="Play/Pause">▶</button>
+                </div>
+              </div>
+              <div class="dim">
+                <div class="video-col">
+                  <video muted playsinline>
+                    <source src="https://apartmentoffplandubai.com/sobha/videos/Downtown%20UAQ%20-%20Sobha%20Realty_2MIN.mp4" type="video/mp4">
+                  </video>
+                  <button class="video-play-pause-btn" aria-label="Play/Pause">▶</button>
+                </div>
+              </div>
+              <!--Content End-->
+      
+            </div>
+          </div>
         </div>
-        </section>
+
+        <script>
+          "use strict"
     
+    // Adding scroll event listener
+    document.addEventListener('scroll', horizontalScroll);
+    
+    //Selecting Elements
+    let sticky = document.querySelector('.sticky');
+    let stickyParent = document.querySelector('.sticky-parent');
+    
+    let scrollWidth = sticky.scrollWidth;
+    let verticalScrollHeight = stickyParent.getBoundingClientRect().height-sticky.getBoundingClientRect().height;
+    
+    //Scroll function 
+    function horizontalScroll(){
+    
+        //Checking whether the sticky element has entered into view or not
+        let stickyPosition = sticky.getBoundingClientRect().top;
+        if(stickyPosition > 1){
+            return;
+        }else{
+            let scrolled = stickyParent.getBoundingClientRect().top; //how much is scrolled?
+            sticky.scrollLeft =(scrollWidth/verticalScrollHeight)*(-scrolled)*0.85;
+        
+        }
+    }
+        </script>
+        <!-- end video -->
 
 
         <!-- our team -->
@@ -621,6 +699,37 @@
     startAuto();
   });
       </script>
+
+<script>
+  // Custom play/pause button logic for video grid
+  document.querySelectorAll('.video-col').forEach(function(col) {
+    const video = col.querySelector('video');
+    const btn = col.querySelector('.video-play-pause-btn');
+    function updateBtn() {
+      btn.textContent = video.paused ? '▶' : '⏸';
+    }
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (video.paused) {
+        // Pause all other videos
+        document.querySelectorAll('.video-col video').forEach(v => { if (v !== video) v.pause(); });
+        video.play();
+      } else {
+        video.pause();
+      }
+      updateBtn();
+    });
+    video.addEventListener('play', updateBtn);
+    video.addEventListener('pause', updateBtn);
+    // Show controls only on hover/focus
+    video.controls = false;
+    col.addEventListener('mouseenter', function() { video.controls = true; });
+    col.addEventListener('mouseleave', function() { video.controls = false; });
+    col.addEventListener('focusin', function() { video.controls = true; });
+    col.addEventListener('focusout', function() { video.controls = false; });
+    updateBtn();
+  });
+</script>
 </body>
 </html>
 

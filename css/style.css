@@ -749,7 +749,6 @@ footer small { color: #555; font-size: 0.75rem; }
   .team-section .cards .card {
     position: relative;
     cursor: pointer;
-    padding: 0.3rem;
   }
   .team-section .cards .card h3,
   .team-section .cards .card p {
@@ -821,7 +820,7 @@ footer small { color: #555; font-size: 0.75rem; }
 
 
 .team-slider {
-  --gap: 10px;
+  --gap: 0px;
   width: 100%;
   max-width: 1000px;
   margin: auto;

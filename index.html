@@ -430,13 +430,13 @@
 
 
         <!-- our team -->
-        <section class="team-section">
+        <section class="team-section team-slider" id="teamSlider">
             <span>meet our</span>
             <h2>Team</h2>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi, praesentium veritatis voluptatibus ut consequuntur quas consequatur omnis id rem obcaecati.</p>
             <span class="bg-watermark">team</span>
-            <div class="cards">
-              <div class="card">
+            <div class="cards team-slider-track" id="track">
+              <div class="card team-card">
                 <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Franklin Carlson">
                 <div class="card-content">
                   <h3>franklin carlson</h3>
@@ -447,7 +447,7 @@
                   </ul>
                 </div>
               </div>
-              <div class="card">
+              <div class="card team-card">
                 <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Antonia Moore">
                 <div class="card-content">
                   <h3>antonia moore</h3>
@@ -458,7 +458,40 @@
                   </ul>
                 </div>
               </div>
-              <div class="card">
+              <div class="card team-card">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Travis Lynch">
+                <div class="card-content">
+                  <h3>travis lynch</h3>
+                  <p>web developer</p>
+                  <ul>
+                    <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card team-card">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Franklin Carlson">
+                <div class="card-content">
+                  <h3>franklin carlson</h3>
+                  <p>UX Designer</p>
+                  <ul>
+                    <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card team-card">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Antonia Moore">
+                <div class="card-content">
+                  <h3>antonia moore</h3>
+                  <p>product designer</p>
+                  <ul>
+                    <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card team-card">
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Travis Lynch">
                 <div class="card-content">
                   <h3>travis lynch</h3>
@@ -470,10 +503,31 @@
                 </div>
               </div>
             </div>
+            <button class="team-btn prev" id="prev">❮</button>
+            <button class="team-btn next" id="next">❯</button>
           </section>
 
+<style>
+ 
+</style>
+<!-- <div class="team-slider" id="teamSlider">
+  <div class="team-slider-track" id="track">
+    <div class="team-card">1</div>
+    <div class="team-card">2</div>
+    <div class="team-card">3</div>
+    <div class="team-card">4</div>
+    <div class="team-card">5</div>
+    <div class="team-card">6</div>
+  </div>
+  <button class="team-btn prev" id="prev">❮</button>
+  <button class="team-btn next" id="next">❯</button>
+</div> -->
 
-  
+
+
+
+
+
         <!-- end -->
     <!-- footer section-->
     <footer>
@@ -487,11 +541,86 @@
         <small>© 2025 Creative Landing. All rights reserved.</small>
         </footer>
     <!-- footer end -->
-  
+
+
       <!-- end gallery section -->
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="js/script.js"></script>
-      
+  
+      <script>
+      document.addEventListener('DOMContentLoaded', () => {
+    const track   = document.getElementById('track');
+    const cards   = Array.from(document.querySelectorAll('.team-card'));
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+
+    let slidesToShow = window.innerWidth <= 768 ? 1 : 3;
+    let index = 0;
+    let autoId = null;
+
+    function getGap() {
+      const g = getComputedStyle(track).gap || '0';
+      return parseFloat(g) || 0;
+    }
+
+    function slideSize() {
+      const cardW = cards[0].getBoundingClientRect().width;
+      const gap = getGap();
+      return cardW + gap;
+    }
+
+    function setActive() {
+      cards.forEach(c => c.classList.remove('active'));
+      let activeIndex = index + (slidesToShow === 3 ? 1 : 0); // middle if 3, first if 1
+      if (activeIndex < cards.length) {
+        cards[activeIndex].classList.add('active');
+      }
+    }
+
+    function applyTransform() {
+      const x = -index * slideSize();
+      track.style.transform = `translateX(${x}px)`;
+      setActive();
+    }
+
+    function next() {
+      let maxIndex = cards.length - slidesToShow;
+      index = (index + 1 > maxIndex) ? 0 : index + 1;
+      applyTransform();
+    }
+
+    function prev() {
+      let maxIndex = cards.length - slidesToShow;
+      index = (index - 1 < 0) ? maxIndex : index - 1;
+      applyTransform();
+    }
+
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
+
+    function startAuto() {
+      stopAuto();
+      autoId = setInterval(next, 3000);
+    }
+    function stopAuto() {
+      if (autoId) { clearInterval(autoId); autoId = null; }
+    }
+
+    const slider = document.getElementById('teamSlider');
+    slider.addEventListener('mouseenter', stopAuto);
+    slider.addEventListener('mouseleave', startAuto);
+
+    // ✅ Adjust slidesToShow on resize
+    window.addEventListener('resize', () => {
+      slidesToShow = window.innerWidth <= 768 ? 1 : 3;
+      if (index > cards.length - slidesToShow) index = 0;
+      applyTransform();
+    });
+
+    applyTransform();
+    startAuto();
+  });
+      </script>
 </body>
 </html>
 

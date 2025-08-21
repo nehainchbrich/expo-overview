@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     $(window).scroll(function() {
         // Check if the pin-spacer section is in the viewport
@@ -63,7 +64,6 @@ $(document).ready(function() {
     // Trigger scroll event when the page loads to apply changes immediately
     $(window).scroll();
 });
-
 
 
 

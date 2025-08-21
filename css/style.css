@@ -917,5 +917,10 @@ footer small { color: #555; font-size: 0.75rem; }
       .d-flex{
         display: block;
       }
+      .team-card.active {
+        padding: 0;
+         transform: translatey(0%);
+         z-index: 2;
+       }
     }
 
